@@ -1,54 +1,69 @@
-<!DOCTYPE html>
-<html style="width:100%;height:100%;background-color:black;">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-		<meta name="description" content="EaglercraftX 1.8 test directory HTML page" />
-		<meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.8, 1.8.8" />
-		<title>EaglercraftX 1.8</title>
-		<meta property="og:locale" content="en-US" />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="EaglercraftX 1.8" />
-		<meta property="og:description" content="test directory HTML page" />
-		<link type="image/png" rel="shortcut icon" href="favicon.png" />
-		<script type="text/javascript" src="classes.js"></script>
-		<script type="text/javascript">
-			"use strict";
-			window.addEventListener("load", function() {
-				if(window.location.href.indexOf("file:") === 0) {
-					alert("HTTP please, do not open this file locally, run a local HTTP server and load it via HTTP");
-				}else {
-					var relayId = Math.floor(Math.random() * 3);
-					window.eaglercraftXOpts = {
-						demoMode: false,
-						container: "game_frame",
-						assetsURI: "assets.epk",
-						localesURI: "lang/",
-						worldsDB: "worlds",
-						logInvalidCerts: true,
-						crashOnUncaughtExceptions: true,
-						servers: [
-							{ addr: "ws://localhost:8081/", name: "Local test server" }
-						],
-						relays: [
-							{ addr: "wss://relay.deev.is/", comment: "lax1dude relay #1", primary: relayId === 0 },
-							{ addr: "wss://relay.lax1dude.net/", comment: "lax1dude relay #2", primary: relayId === 1 },
-							{ addr: "wss://relay.shhnowisnottheti.me/", comment: "ayunami relay #1", primary: relayId === 2 }
-						]
-					};
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astra Client - Play</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 
-					var q = window.location.search;
-					if((typeof q === "string") && q[0] === "?" && (typeof window.URLSearchParams !== "undefined")) {
-						q = new window.URLSearchParams(q);
-						var s = q.get("server");
-						if(s) window.eaglercraftXOpts.joinServer = s;
-					}
+<body>
+    <div class="notification">
+        <p>1.12.2 has not been released yet, and Social Features will come in v1.6.1.</p>
+    </div>
 
-					main();
-				}
-			});
-		</script>
-	</head>
-	<body style="margin:0px;width:100%;height:100%;overflow:hidden;background-color:black;" id="game_frame">
-	</body>
-</html>
+    <main id="main_content_area">
+        <div id="play_view">
+            <div class="page_title_header">
+                <h1>Select a Version</h1>
+            </div>
+            <div class="play-grid-layout">
+                <div class="play-card-item">
+                    <div class="play-card-header">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Astra Client</h3>
+                    </div>
+                    <div class="client-options-list">
+                        <div class="client-version-item">
+                            <span>Version 1.12</span>
+                            <button class="play-action-btn" data-version="112">Launch</button>
+                        </div>
+                        <div class="client-version-item">
+                            <span>Version 1.8</span>
+                            <button class="play-action-btn" data-version="18">Launch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="play-grid-layout" style="margin-top: 20px;">
+                <div class="play-card-item">
+                    <div class="play-card-header">
+                        <i class="fas fa-download"></i>
+                        <h3>Downloads</h3>
+                    </div>
+                    <div class="client-options-list">
+                        <div class="client-version-item">
+                            <span>Web Files (WASM)</span>
+                            <a href="https://github.com/AstraClientOrg/AstraClientOrg.github.io/releases/download/1.6/webwasm.zip" class="download-btn" download>Download</a>
+                        </div>
+                        <div class="client-version-item">
+                            <span>Web Files (JS)</span>
+                            <a href="https://github.com/AstraClientOrg/AstraClientOrg.github.io/releases/download/1.6/webjs.zip" class="download-btn" download>Download</a>
+                        </div>
+                        <div class="client-version-item">
+                            <span>Offline Download (WASM)</span>
+                            <a href="https://github.com/AstraClientOrg/AstraClientOrg.github.io/releases/download/1.6/astrawasmoffline.html" class="download-btn" download>Download</a>
+                        </div>
+                        <div class="client-version-item">
+                            <span>Offline Download (JS)</span>
+                            <a href="https://github.com/AstraClientOrg/AstraClientOrg.github.io/releases/download/1.6/astrajsoffline.html" class="download-btn" download>Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+
+
+</body></html>
