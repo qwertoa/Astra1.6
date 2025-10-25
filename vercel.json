@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/play/js/18", "destination": "/play/js/18/index.html" }
+    { "source": "/", "destination": "/index.html" }
   ],
   "cleanUrls": true,
   "trailingSlash": false
