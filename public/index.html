@@ -3,20 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-  <meta name="description" content="EaglercraftX 1.8 test directory HTML page" />
-  <meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.8, 1.8.8" />
-  <title>EaglercraftX 1.8</title>
+  <meta name="description" content="Eaglercraft Astra Client" />
+  <meta name="keywords" content="eaglercraft, astra, minecraft, 1.8, 1.8.8" />
+  <meta name="theme-color" content="#000000" />
+  <title>Eaglercraft Astra</title>
   <meta property="og:locale" content="en-US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="EaglercraftX 1.8" />
-  <meta property="og:description" content="test directory HTML page" />
-  <link type="image/png" rel="shortcut icon" href="./favicon.png" />
-  <script type="text/javascript" src="./classes.js"></script>
-  <script type="text/javascript">
+  <meta property="og:title" content="Astra 1.6" />
+  <meta property="og:description" content="Custom Eaglercraft client hosted on Vercel" />
+  <link rel="shortcut icon" href="./favicon.png" type="image/png" />
+  <style>
+    #loading_screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: black;
+      color: white;
+      font-family: sans-serif;
+      font-size: 1.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #loading_text {
+      margin-bottom: 20px;
+    }
+    #progress_bar {
+      width: 60%;
+      height: 20px;
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #progress_fill {
+      width: 0%;
+      height: 100%;
+      background-color: #8000ff; /* Purple */
+      transition: width 0.3s ease;
+    }
+  </style>
+  <script src="./classes.js"></script>
+  <script>
     "use strict";
     window.addEventListener("load", function() {
       if (window.location.href.indexOf("file:") === 0) {
-        alert("HTTP please, do not open this file locally, run a local HTTP server and load it via HTTP");
+        alert("HTTP please — do not open this file locally. Run a local server or deploy online.");
       } else {
         var relayId = Math.floor(Math.random() * 3);
         window.eaglercraftXOpts = {
@@ -31,24 +64,61 @@
             { addr: "ws://localhost:8081/", name: "Local test server" }
           ],
           relays: [
-            { addr: "wss://relay.deev.is/", comment: "lax1dude relay #1", primary: relayId === 0 },
-            { addr: "wss://relay.lax1dude.net/", comment: "lax1dude relay #2", primary: relayId === 1 },
-            { addr: "wss://relay.shhnowisnottheti.me/", comment: "ayunami relay #1", primary: relayId === 2 }
+            { addr: "wss://relay.deev.is/", comment: "Relay #1", primary: relayId === 0 },
+            { addr: "wss://relay.lax1dude.net/", comment: "Relay #2", primary: relayId === 1 },
+            { addr: "wss://relay.shhnowisnottheti.me/", comment: "Relay #3", primary: relayId === 2 }
           ]
         };
 
         var q = window.location.search;
-        if ((typeof q === "string") && q[0] === "?" && (typeof window.URLSearchParams !== "undefined")) {
+        if (typeof q === "string" && q[0] === "?" && typeof window.URLSearchParams !== "undefined") {
           q = new window.URLSearchParams(q);
           var s = q.get("server");
           if (s) window.eaglercraftXOpts.joinServer = s;
         }
 
+        let progress = 0;
+        const fill = document.getElementById("progress_fill");
+        const interval = setInterval(() => {
+          progress += Math.random() * 10;
+          if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+          }
+          fill.style.width = progress + "%";
+        }, 200);
+        const hideLoading = () => {
+          const loading = document.getElementById("loading_screen");
+          if (loading) loading.style.display = "none";
+        };
+        const originalMain = window.main;
+        window.main = function() {
+          hideLoading();
+          originalMain();
+        };
+
         main();
       }
     });
   </script>
+  <noscript>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: sans-serif;
+        text-align: center;
+        padding: 2em;
+      }
+    </style>
+    <p>This site requires JavaScript to run Eaglercraft Astra. Please enable it in your browser settings.</p>
+  </noscript>
 </head>
 <body style="margin:0px;width:100%;height:100%;overflow:hidden;background-color:black;" id="game_frame">
+  <div id="loading_screen">
+    <div id="loading_text">If you are fluxxy pls leave NOW, Loading... WARNING only has English, Spanish, and French, too lazy to add other languages.</div>
+    <div id="progress_bar"><div id="progress_fill"></div></div>
+  </div>
 </body>
 </html>
+
