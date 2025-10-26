@@ -69,8 +69,10 @@
           logInvalidCerts: true,
           crashOnUncaughtExceptions: true,
           servers: [
-            { addr: "ws://localhost:8081/", name: "Local test server" }
-          ],
+  { addr: "ws://localhost:8081/", name: "Local test server" },
+  { addr: "wss://mc.lampnetwork.xyz/", name: "Lamp Network", locked: true },
+  { addr: "wss://vanillamc.org/", name: "VanillaMC", locked: true }
+],
           relays: [
             { addr: "wss://relay.deev.is/", comment: "Relay #1", primary: relayId === 0 },
             { addr: "wss://relay.lax1dude.net/", comment: "Relay #2", primary: relayId === 1 },
