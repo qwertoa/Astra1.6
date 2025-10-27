@@ -2,11 +2,11 @@
 <html style="width:100%;height:100%;background-color:black;">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.o, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="Eaglercraft Astra Client" />
   <meta name="keywords" content="eaglercraft, astra, minecraft, 1.8, 1.8.8" />
   <meta name="theme-color" content="#000000" />
-  <title>EaglercraftX 1.8.8</title>
+  <title>EaglercraftX</title>
   <meta property="og:locale" content="en-US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Astra 1.6" />
@@ -14,9 +14,9 @@
   <link rel="shortcut icon" href="./favicon.png" type="image/png" />
   <style>
     @keyframes edgeGlow {
-      0% { box-shadow: 0 0 60px 30px purple inset; }
-      50% { box-shadow: 0 0 80px 40px #a020f0 inset; }
-      100% { box-shadow: 0 0 60px 30px purple inset; }
+      0% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.2) inset; }
+      50% { box-shadow: 0 0 30px 15px rgba(160, 32, 240, 0.25) inset; }
+      100% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.2) inset; }
     }
 
     @keyframes barGlow {
@@ -25,13 +25,13 @@
       100% { box-shadow: 0 0 15px 5px purple; }
     }
 
-    @keyframes textPulse {
-      0% { text-shadow: 0 0 10px purple; }
-      50% { text-shadow: 0 0 20px #a020f0; }
-      100% { text-shadow: 0 0 10px purple; }
+    @keyframes textPulseWhite {
+      0% { text-shadow: 0 0 10px white; }
+      50% { text-shadow: 0 0 20px white; }
+      100% { text-shadow: 0 0 10px white; }
     }
 
-    body::before {
+    #loading_screen::before {
       content: "";
       position: fixed;
       top: 0; left: 0;
@@ -60,11 +60,12 @@
       font-size: 4em;
       font-weight: bold;
       margin-bottom: 0.3em;
-      animation: textPulse 2s infinite ease-in-out;
+      animation: textPulseWhite 2s infinite ease-in-out;
     }
 
     #loading_subtext {
       font-size: 1em;
+      font-weight: bold;
       opacity: 0.8;
       margin-bottom: 2em;
       max-width: 80%;
@@ -134,7 +135,7 @@
 
         const hideLoading = () => {
           const loading = document.getElementById("loading_screen");
-          if (loading) loading.style.display = "none";
+          if (loading) loading.remove();
         };
 
         const originalMain = window.main;
@@ -170,3 +171,4 @@
   </div>
 </body>
 </html>
+
