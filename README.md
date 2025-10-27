@@ -1,4 +1,4 @@
 # astra client 1.6
-Credit to AstraClientOrg and Barneycompiler. Compatible with Vercel. Only English, Spanish, and French are supported. I'm too lazy to add other languages. ❌fluxxy
-                                                                                                                                        
-Plans include fixing GitHub showing file size 0bytes cuz it's annoying and for QOL.
+Credit to AstraClientOrg and Barneycompiler. Compatible with Vercel. Only English, Spanish, and French are supported. Because im too lazy to add other languages.                                                                                                        
+
+credit to Microsoft Copilot because it did like 50% of the work 💀
