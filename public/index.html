@@ -2,17 +2,45 @@
 <html style="width:100%;height:100%;background-color:black;">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.o, maximum-scale=1.0">
   <meta name="description" content="Eaglercraft Astra Client" />
   <meta name="keywords" content="eaglercraft, astra, minecraft, 1.8, 1.8.8" />
   <meta name="theme-color" content="#000000" />
-  <title>EaglercraftX</title>
+  <title>EaglercraftX 1.8.8</title>
   <meta property="og:locale" content="en-US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Astra 1.6" />
   <meta property="og:description" content="Custom Eaglercraft client hosted on Vercel" />
   <link rel="shortcut icon" href="./favicon.png" type="image/png" />
   <style>
+    @keyframes edgeGlow {
+      0% { box-shadow: 0 0 60px 30px purple inset; }
+      50% { box-shadow: 0 0 80px 40px #a020f0 inset; }
+      100% { box-shadow: 0 0 60px 30px purple inset; }
+    }
+
+    @keyframes barGlow {
+      0% { box-shadow: 0 0 15px 5px purple; }
+      50% { box-shadow: 0 0 25px 10px #a020f0; }
+      100% { box-shadow: 0 0 15px 5px purple; }
+    }
+
+    @keyframes textPulse {
+      0% { text-shadow: 0 0 10px purple; }
+      50% { text-shadow: 0 0 20px #a020f0; }
+      100% { text-shadow: 0 0 10px purple; }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      animation: edgeGlow 3s infinite ease-in-out;
+      z-index: 9998;
+    }
+
     #loading_screen {
       position: fixed;
       top: 0; left: 0;
@@ -27,24 +55,30 @@
       z-index: 9999;
       text-align: center;
     }
+
     #loading_text {
-      font-size: 3em;
+      font-size: 4em;
       font-weight: bold;
       margin-bottom: 0.3em;
+      animation: textPulse 2s infinite ease-in-out;
     }
+
     #loading_subtext {
       font-size: 1em;
       opacity: 0.8;
       margin-bottom: 2em;
       max-width: 80%;
     }
-    #progress_bar { /* fake progress bar lol */
+
+    #progress_bar {
       width: 60%;
       height: 20px;
       background-color: #333;
       border-radius: 10px;
       overflow: hidden;
+      animation: barGlow 2s infinite ease-in-out;
     }
+
     #progress_fill { 
       width: 0%;
       height: 100%;
@@ -69,10 +103,10 @@
           logInvalidCerts: true,
           crashOnUncaughtExceptions: true,
           servers: [
-  { addr: "ws://localhost:8081/", name: "Local test server" },
-  { addr: "wss://mc.lampnetwork.xyz/", name: "Lamp Network", locked: true },
-  { addr: "wss://vanillamc.org/", name: "VanillaMC", locked: true }
-],
+            { addr: "ws://localhost:8081/", name: "Local test server" },
+            { addr: "wss://mc.lampnetwork.xyz/", name: "Lamp Network", locked: true },
+            { addr: "wss://vanillamc.org/", name: "VanillaMC", locked: true }
+          ],
           relays: [
             { addr: "wss://relay.deev.is/", comment: "Relay #1", primary: relayId === 0 },
             { addr: "wss://relay.lax1dude.net/", comment: "Relay #2", primary: relayId === 1 },
@@ -87,7 +121,7 @@
           if (s) window.eaglercraftXOpts.joinServer = s;
         }
 
-        let progress = 0; // fake progress bar animation lol
+        let progress = 0;
         const fill = document.getElementById("progress_fill");
         const interval = setInterval(() => {
           progress += Math.random() * 10;
