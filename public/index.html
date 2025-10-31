@@ -100,6 +100,8 @@
       align-items: center;
       justify-content: center;
       z-index: 10000;
+      font-family: sans-serif;
+      text-align: center;
     }
 
     #permission_overlay button {
@@ -124,7 +126,7 @@
           <!DOCTYPE html>
           <html>
             <head>
-              <title>Popup</title>
+              <title>About:blank Popup</title>
               <style>
                 body { font-family: sans-serif; background: #111; color: white; padding: 2em; }
                 h1 { color: #8000ff; }
@@ -143,7 +145,7 @@
           main(); // Resume game
         }, 500);
       } else {
-        alert("Popup blocked! Please enable popups for this site.");
+        alert("Popup blocked! Please enable popups for about:blank.");
       }
     }
 
@@ -229,6 +231,5 @@
   </div>
 
   <div id="permission_overlay">
-    <h1>Allow Popups to Continue</h1>
-    <p>This website requires popup permission. Click
+    <h1>Allow Popups (for about:blank) to Continue</h1
 
