@@ -12,9 +12,8 @@
   <meta property="og:title" content="Astra 1.6" />
   <meta property="og:description" content="Custom Eaglercraft client hosted on Vercel" />
   <link rel="shortcut icon" href="./favicon.png" type="image/png" />
- <!-- anayltics -->
   <script defer src="/_vercel/insights/script.js"></script>
-  
+
   <style>
     @keyframes edgeGlow {
       0% { box-shadow: 0 0 20px 10px rgba(128, 0, 128, 0.2) inset; }
@@ -89,10 +88,69 @@
       background-color: #8000ff;
       transition: width 0.3s ease;
     }
+
+    #permission_overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    #permission_overlay button {
+      margin-top: 1em;
+      padding: 10px 20px;
+      font-size: 1em;
+      background: #8000ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
   </style>
+
   <script src="./classes.js"></script>
   <script>
     "use strict";
+
+    function grantPermission() {
+      const popup = window.open('about:blank', '_blank');
+      if (popup) {
+        popup.document.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>Popup</title>
+              <style>
+                body { font-family: sans-serif; background: #111; color: white; padding: 2em; }
+                h1 { color: #8000ff; }
+              </style>
+            </head>
+            <body>
+              <h1>This is an about:blank popup</h1>
+              <p>Opened after user permission..</p>
+            </body>
+          </html>
+        `);
+        popup.document.close();
+
+        document.getElementById("permission_overlay").style.display = "none";
+        setTimeout(() => {
+          main(); // Resume game
+        }, 500);
+      } else {
+        alert("Popup blocked! Please enable popups for this site.");
+      }
+    }
+
+    window.main = function() {
+      // Wait for permission before starting
+    };
+
     window.addEventListener("load", function() {
       if (window.location.href.indexOf("file:") === 0) {
         alert("HTTP please — do not open this file locally. Run a local server or deploy online.");
@@ -146,13 +204,10 @@
           hideLoading();
           originalMain();
         };
-
-        setTimeout(() => {
-          main();
-        }, 5000);
       }
     });
   </script>
+
   <noscript>
     <style>
       body {
@@ -172,6 +227,8 @@
     <div id="loading_subtext">Only English, Spanish, and French are available. Choosing other languages WILL crash the game. WASM will come when I feel like it - Qwerto.<br/>👍Qwerto 😎🤑, 👍Fluxxy 🗿🐐.</div>
     <div id="progress_bar"><div id="progress_fill"></div></div>
   </div>
-</body>
-</html>
+
+  <div id="permission_overlay">
+    <h1>Allow Popups to Continue</h1>
+    <p>This website requires popup permission. Click
 
